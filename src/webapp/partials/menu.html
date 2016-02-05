@@ -1,0 +1,27 @@
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Smart Simulator</a>
+		</div>
+		<div>
+
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#!/"><span
+						class="glyphicon glyphicon-home">Home</span></a></li>
+				<li ><a href="#!/logs"><span
+						class="glyphicon glyphicon-cog">Logs</span></a></li>
+				<li ><a data-toggle="modal" data-target="#about"><span
+						class="glyphicon glyphicon-info-sign">About</span></a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class=" active"><a ng-controller="timeController"><span
+						class="glyphicon glyphicon-time" id="time">{{clock| date:'yyyy/MM/dd HH:mm:ss'}}</span></a></li>
+				<li><a href="#!/"><span class="glyphicon glyphicon-user"></span>
+						Sign Up</a></li>
+				<li><a href="#!/"><span class="glyphicon glyphicon-log-in"></span>
+						Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
