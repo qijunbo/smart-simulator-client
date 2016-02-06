@@ -5,6 +5,7 @@
 var deviceApp = angular.module('deviceApp', [
     'ngRoute',     
     'deviceControllers' ,
+    'auditControllers',
     'deviceServices',
     'auditServices'
 ]);
@@ -14,15 +15,14 @@ deviceApp.config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
 
         $routeProvider.
-                when('/:id', {
-                    templateUrl:'partials/edit.html', // this will be removed,
-                    controller: 'getChargePointController'
-                }).when('/', {
+        		when('/', {
                     templateUrl: 'partials/devices.html',
                     controller: 'listChargePointController'
-                }).when('/logs', {
+                }).when('/logs/:serial', {
                     templateUrl: 'partials/audit.html',  
                     controller: 'auditController'
+                }).otherwise({
+                    redirectTo: '/'
                 });
 
         $locationProvider.html5Mode(false).hashPrefix('!');

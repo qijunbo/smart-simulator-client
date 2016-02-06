@@ -13,8 +13,8 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 
 war {
-    baseName = 'double'
-    //version =  '0.1.0'
+    baseName = 'simulator-client'
+    version =  '1.0.0'
 }
 
 repositories {

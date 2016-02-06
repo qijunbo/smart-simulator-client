@@ -11,7 +11,7 @@ deviceControllers.controller('deviceInitController', [ '$scope',   'chargePointS
 			$scope.onNewButtonClick = function() {
 				$scope.chargepoint = {
 					"version" : "OCPP15",
-					"centralURL" : "http://willow:7080/ocppservice/",
+					"centralURL" : "http://op.spie.ievep.net/ws/OcppGateway",
 					"connectors" : [ {
 						"id" : 0,
 						"status" : "Available"
@@ -26,8 +26,8 @@ deviceControllers.controller('deviceInitController', [ '$scope',   'chargePointS
 
 			// when user click the save button, save data.
 			$scope.saveUpdate = function( ) {
-				//alert( JSON.stringify($scope.chargepoint) );
-				//console.log( JSON.stringify($scope.chargepoint) );
+				// alert( JSON.stringify($scope.chargepoint) );
+				// console.log( JSON.stringify($scope.chargepoint) );
 				var insertFlag = $scope.chargepoint.id == null ? true : false;
 
 				chargePointService.save({}, $scope.chargepoint, function success(response) {
@@ -43,8 +43,8 @@ deviceControllers.controller('deviceInitController', [ '$scope',   'chargePointS
 			};
 			 
 			$scope.remove = function( item ) {
-				//alert( JSON.stringify(item) );
-				//console.log( JSON.stringify(item) );
+				// alert( JSON.stringify(item) );
+				// console.log( JSON.stringify(item) );
  
 				chargePointIdService.delete({id:item.id}, {}, function success(response) {
 					console.log("remove ChargePoint Success:" + JSON.stringify(item));
@@ -65,7 +65,8 @@ deviceControllers.controller('listChargePointController', [ '$scope', 'chargePoi
 			$scope.cps = [];
 			chargePointService.get({}, function success(response) {
 				
-				// console.log("listChargePoint Success:" + JSON.stringify(response));
+				// console.log("listChargePoint Success:" +
+				// JSON.stringify(response));
 				$scope.cps = response;
 
 			}, function error(errorResponse) {
@@ -76,7 +77,7 @@ deviceControllers.controller('listChargePointController', [ '$scope', 'chargePoi
 		} ]);
 
 
-//this will be removed  
+// this will be removed
 deviceControllers.controller('saveChargePointController', [ '$scope', 'chargePointService',   
 		function saveChargePointController($scope, chargePointService) { 
 			var chargepoint = {
@@ -100,7 +101,7 @@ deviceControllers.controller('saveChargePointController', [ '$scope', 'chargePoi
 
 		} ]);
 
-////this will be removed 
+// //this will be removed
 deviceControllers.controller('getChargePointController', [ '$scope', '$routeParams', 'chargePointIdService',
 		function getChargePointController($scope, $routeParams, chargePointIdService) {
 			var deviceId = $routeParams.id;

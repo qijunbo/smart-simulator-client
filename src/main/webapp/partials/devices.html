@@ -46,7 +46,7 @@
 					data-ng-click="onEditClick(o)"><a title="created at: {{o.createDate | date:'yyyy/MM/dd HH:mm:ss'}}">{{o.centralURL}}</a></td>
 				<td>http://localhost:8080/simulator/{{o.version}}</td>
 				 
-				<td class="col-sm-2 text-center"><a href="#log"
+				<td class="col-sm-2 text-center"><a href="#!/logs/{{o.serial}}"
 					data-ng-click="onLogButtonClick(o)" title="view log"><span
 						class="glyphicon glyphicon-eye-open"></span></a>
 
@@ -60,8 +60,6 @@
 							<li><a data-ng-click="remove(o)"><span
 									class="glyphicon glyphicon-remove">&nbsp;</span>Remove</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><span class="glyphicon glyphicon-play"></span>
-									<span class="glyphicon glyphicon-pause"></span>Heartbeat </a></li>
 						</ul>
 				</td>
 			</tr>
