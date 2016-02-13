@@ -1,6 +1,6 @@
 'use strict';
 
-/* Controllers */
+/* device controllers */
 
 var deviceControllers = angular.module('deviceControllers', []);
 

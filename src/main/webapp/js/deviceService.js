@@ -1,9 +1,6 @@
 'use strict';
 
-/* Services */
-
-//var appContext = "http://5.10.70.180:8080"
-var appContext = "http://localhost:8080"
+/** device services */
 
 var deviceServices = angular.module('deviceServices', ['ngResource']);
 
@@ -36,21 +33,3 @@ deviceServices.factory('chargePointService', ['$resource',
 					 
 	  });
   }]);
-
-
-var auditServices = angular.module('auditServices', ['ngResource']);
-
-auditServices.factory('auditService', ['$resource', 
- 	function($resource) {
-        return $resource(appContext + "/audit/device/:serial", {}, {
-            get: {method: 'GET', cache: false, isArray: true},
-            delete: {method: 'DELETE', cache: false, isArray: false}
-        });
-    }]);
-
-auditServices.factory('auditmoreService', ['$resource', 
-	function($resource) {
-    	return $resource(appContext + "/audit/device/:serial/time/:date", {}, {
-        	get: {method: 'GET', cache: false, isArray: true}
-    	});
-	}]);

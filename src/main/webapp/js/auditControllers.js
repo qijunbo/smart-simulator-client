@@ -49,9 +49,10 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 
  
 
-deviceControllers.controller('refreshController', [ '$scope',  '$timeout', 'auditmoreService',
+auditControllers.controller('refreshController', [ '$scope',  '$timeout', 'auditmoreService',
 		function refreshController($scope, $timeout, auditmoreService) {
 			var updateClock = function() {
+
 				var length = $scope.audits.length;
 				//console.log("Audit:" + JSON.stringify( $scope.audits[0]  ));
 		 		//console.log($scope.deviceSerial);
