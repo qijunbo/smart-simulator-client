@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div ng-include src="'partials/menu.html'"></div>
 <!-- Device List -->
 
@@ -44,7 +45,7 @@
 					data-ng-click="onEditClick(o)" class="text-center">{{o.connectorNumber}}</td>
 				<td data-toggle="modal" data-target="#dialog_edit"
 					data-ng-click="onEditClick(o)"><a title="created at: {{o.createDate | date:'yyyy/MM/dd HH:mm:ss'}}">{{o.centralURL}}</a></td>
-				<td>http://localhost:8080/simulator/{{o.version}}</td>
+				<td>{{appContext}}/simulator/{{o.version}}</td>
 				 
 				<td class="col-sm-2 text-center"><a href="#!/logs/{{o.serial}}"
 					data-ng-click="onLogButtonClick(o)" title="view log"><span

@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <div ng-include src="'partials/menu.html'"></div>
 <!-- log part -->
-<div class="container" id="log_container">
-	<div class="navbar-header">
-		<a class="navbar-brand" id="log">Downwards Logs of <b>{{chargepoint.serial}}</b></a>
-	</div>
+<div class="container" id="log_container"  data-ng-controller="refreshController">
+ 
+	<h4 class="modal-title">
+		<a class="navbar-brand" >Logs of <I>{{chargepoint.serial}}</I></a>
+	</h4>
 
 
 	<span class="navbar-form navbar-right"> <input type="text"
@@ -15,24 +17,28 @@
 			<tr>
 				<th>Protocol</th>
 				<th>ChargePoint Serial ID</th>
-				<th class="col-sm-2">&nbsp; <a
-					data-ng-click="clearLogs(chargepoint)" title="clear logs"><span
-						class="glyphicon glyphicon-floppy-remove"></span></a>&nbsp; <a
-					data-ng-click="onHomeButtonClick()" title="go home"> <span
-						class="glyphicon glyphicon-home"> </span></a>&nbsp; <a
-					data-ng-click="onRetweetClick()" title="stop scroll"><span
-						id="retweet" class="glyphicon glyphicon-pushpin">&nbsp;{{refreshStatus()}}</span></a></th>
+				<th><div class="text-right"><a data-ng-click="deleteLogs()" title="clear logs"><span class="glyphicon glyphicon-remove">Clear</span></a>&nbsp; 
+					<a href="#!/" title="go home"> <span class="glyphicon glyphicon-home">Home</span></a>  
+				</div></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>{{chargepoint.version}}</td>
 				<td>{{chargepoint.serial}}</td>
-				<td>&nbsp;</td>
+				<td>{{chargepoint.centralURL}}</td>
 			</tr>
 		</tbody>
 	</table>
 
+	<div class="row  tab-panel text-container " >
+		<div class="col-sm-12 content ">
+			<p>
+				 New log comes here <b>…</b>
+			</p>
+		 
+		</div>
+	</div>
 
 	<div class="row  tab-panel text-container"
 		data-ng-repeat="g in audits | filter: keywords ">

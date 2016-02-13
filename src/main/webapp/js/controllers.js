@@ -8,34 +8,46 @@ deviceControllers.controller('deviceInitController', [ '$scope',   'chargePointS
 		function deviceInitController($scope, chargePointService, chargePointIdService) {
 			// when user click the new button, try to input the charge point
 			// information
+			$scope.appContext = appContext;
 			$scope.onNewButtonClick = function() {
+				$scope.editDialog = "hidden";
+				$scope.newDialog = "";
+
 				$scope.chargepoint = {
-					"version" : "OCPP15",
-					"centralURL" : "http://op.spie.ievep.net/ws/OcppGateway",
-					"connectors" : [ {
-						"id" : 0,
-						"status" : "Available"
-					} ]
+					"version" : "ocpp15",
+					"connectorNumber" : 1 ,
+					"centralURL" : "http://op.spie.ievep.net/ws/OcppGateway"
 				};
 			};
 
 			// when user click the edit button, going to edit, but not yet save.
 			$scope.onEditClick = function(item) {
 				$scope.chargepoint = item;
+				$scope.editDialog = "";
+				$scope.newDialog = "hidden";
 			};
 
 			// when user click the save button, save data.
-			$scope.saveUpdate = function( ) {
+			$scope.saveChargePoint = function( ) {
 				// alert( JSON.stringify($scope.chargepoint) );
 				// console.log( JSON.stringify($scope.chargepoint) );
-				var insertFlag = $scope.chargepoint.id == null ? true : false;
 
+				chargePointService.update({}, $scope.chargepoint, function success(response) {
+					console.log("save ChargePoint Success:" + JSON.stringify(response));
+				}, function error(errorResponse) {
+					alert("Connot connect to server.");
+					console.log("Error:" + JSON.stringify(errorResponse));
+				});
+			};
+
+
+			// when user click the new button
+			$scope.newChargePoint = function( ) {
+				// alert( JSON.stringify($scope.chargepoint) );
+				// console.log( JSON.stringify($scope.chargepoint) );
 				chargePointService.save({}, $scope.chargepoint, function success(response) {
 					console.log("save ChargePoint Success:" + JSON.stringify(response));
-					if (insertFlag) {
 						$scope.cps.push(response);
-					}
-
 				}, function error(errorResponse) {
 					alert("Connot connect to server.");
 					console.log("Error:" + JSON.stringify(errorResponse));
@@ -63,58 +75,13 @@ deviceControllers.controller('deviceInitController', [ '$scope',   'chargePointS
 deviceControllers.controller('listChargePointController', [ '$scope', 'chargePointService', 
 		function listChargePointController($scope, chargePointService) {
 			$scope.cps = [];
-			chargePointService.get({}, function success(response) {
-				
-				// console.log("listChargePoint Success:" +
-				// JSON.stringify(response));
+			chargePointService.get( {}, {}, function success(response) {
+
+				//console.log("listChargePoint Success:" + JSON.stringify(response));
 				$scope.cps = response;
 
 			}, function error(errorResponse) {
 				alert("Connot connect to server.");
-				console.log("Error:" + JSON.stringify(errorResponse));
-			});
-
-		} ]);
-
-
-// this will be removed
-deviceControllers.controller('saveChargePointController', [ '$scope', 'chargePointService',   
-		function saveChargePointController($scope, chargePointService) { 
-			var chargepoint = {
-					"version" : "OCPP15",
-					"serial": "test",
-					"centralURL" : "http://willow:7080/ocppservice/",
-					"connectors" : [ {
-						"id" : 0,
-						"status" : "Available"
-					} ]
-			};
-			chargePointService.save({}, chargepoint, function success(response) {
-				
-				console.log("saveChargePoint Success:" + JSON.stringify(response));
-				$scope.cps = response;
-
-			}, function error(errorResponse) {
-				alert("error");
-				console.log("Error:" + JSON.stringify(errorResponse));
-			});
-
-		} ]);
-
-// //this will be removed
-deviceControllers.controller('getChargePointController', [ '$scope', '$routeParams', 'chargePointIdService',
-		function getChargePointController($scope, $routeParams, chargePointIdService) {
-			var deviceId = $routeParams.id;
-			$scope.chargepoint = {};
-			alert("getChargePoint");
-			chargePointIdService.get({
-				id : deviceId
-			}, function success(response) {
-
-				console.log("getChargePoint Success:" + JSON.stringify(response));
-				$scope.chargepoint = response;
-
-			}, function error(errorResponse) {
 				console.log("Error:" + JSON.stringify(errorResponse));
 			});
 
@@ -127,7 +94,7 @@ deviceControllers.controller('timeController', [ '$scope',  '$timeout',
 				$scope.clock = new Date();
 				$timeout(function() {
 					updateClock();
-				}, 2000);
+				}, 1000);
 			};
 			updateClock();
 
