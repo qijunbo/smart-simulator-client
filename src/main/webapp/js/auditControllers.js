@@ -47,7 +47,7 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 					//console.log("refresh audit Success:" + JSON.stringify(response));
 					console.log("response array length: " + response.length);
 					if(response.length > 1){
-						$scope.audits =  $scope.audits.concat( response);
+						$scope.audits =  response.concat($scope.audits);  // $scope.audits.concat( );
 					}
 					if( $scope.audits.length > 50 ){
 						$scope.audits = $scope.audits.slice(0, 49);
