@@ -18,6 +18,9 @@ deviceApp.config(['$routeProvider', '$locationProvider',
         		when('/', {
                     templateUrl: 'partials/devices.html',
                     controller: 'listChargePointController'
+                }).when('/logs', {
+                    templateUrl: 'partials/sysaudit.html',  
+                    controller: 'sysauditController'
                 }).when('/logs/:serial', {
                     templateUrl: 'partials/audit.html',  
                     controller: 'auditController'

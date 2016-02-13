@@ -17,3 +17,10 @@ auditServices.factory('auditmoreService', ['$resource',
         	get: {method: 'GET', cache: false, isArray: true}
     	});
 	}]);
+
+auditServices.factory('sysauditService', ['$resource', 
+    function($resource) {
+        return $resource(appContext + "/audit/time/:date", {}, {
+            get: {method: 'GET', cache: false, isArray: true}
+        });
+    }]);

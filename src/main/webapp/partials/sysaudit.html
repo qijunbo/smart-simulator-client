@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<div ng-include src="'partials/menu.html'"></div>
+<!-- log part -->
+<div class="container" id="log_container">
+
+	<h4 class="modal-title">
+		<a class="navbar-brand">All Logs </I></a>
+	</h4>
+
+
+	<span class="navbar-form navbar-right"> <input type="text"
+		class="form-control" data-ng-model="keywords" placeholder="Search...">
+		<a href="#"><span class="glyphicon glyphicon-search"></span> </a></span>
+
+	<div class="row  tab-panel text-container ">
+		<div class="col-sm-12 content ">
+			<p>
+				New log comes here <b>…</b>
+			</p>
+		</div>
+	</div>
+
+	<div class="row  tab-panel text-container"
+		data-ng-repeat="g in audits | filter: keywords ">
+		<div class="col-sm-12 content">
+			<table class="table-responsive" >
+				<tbody>
+					<tr>
+						<td class="col-sm-3"><b>{{g.type}}</b></td>
+						<td class="col-sm-3"><b>{{g.deviceSerial }}</b></td>
+						<td class="col-sm-3"><b>{{g.transactionId}}</b></td>
+						<td class="col-sm-3"><b>{{g.time | date:'yyyy/MM/dd HH:mm:ss'}}</b></td>
+
+					</tr>
+					<tr>
+						<td colspan="4">{{g.message}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+
+
+<!-- invisable partials -->
+<div ng-include src="'partials/about.html'"></div>
+
+<!-- footer -->
+<div ng-include src="'partials/footer.html'"></div>
