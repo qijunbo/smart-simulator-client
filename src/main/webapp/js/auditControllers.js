@@ -21,15 +21,7 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 				console.log("Error:" + JSON.stringify(errorResponse));
 			});
 
-			//get the log information of current charge point.
-			auditService.get({serial: $routeParams.serial }, {}, function success(response) {
-				//console.log("list audit Success:" + JSON.stringify(response));
-				$scope.audits = response;
 
-			}, function error(errorResponse) {
-				alert("Connot connect to server.");
-				console.log("Error:" + JSON.stringify(errorResponse));
-			});
 
 			// periodically call the API to get the recent logs if any.
 			var updateClock = function() {
@@ -38,7 +30,7 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 				//console.log("Audit:" + JSON.stringify( $scope.audits[0]  ));
 		 		//console.log($scope.deviceSerial);
 		 		var time = 0;
-				console.log( "time " + time );
+				//console.log( "time " + time );
 				//console.log(JSON.stringify($scope.audits));
 				if( length > 0 ){
 					time = $scope.audits[0].time; 
@@ -47,8 +39,10 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 						time = 0;
 					}
 				}
-				//var formatedDate = time.getFullYear() + '-' + (time.getMonth() + 1) + '-' +  time.getDate()  + ' ' + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds ();
-				
+				var current = new Date(time);
+				var formatedDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' +  current.getDate()  + ' ' + current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds ();
+				console.log( "time " + formatedDate );
+
 				auditmoreService.get({serial: $scope.deviceSerial,  date: time  }, {}, function success(response) {
 					//console.log("refresh audit Success:" + JSON.stringify(response));
 					console.log("response array length: " + response.length);
