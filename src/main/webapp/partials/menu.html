@@ -9,15 +9,20 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#!/"><span
 						class="glyphicon glyphicon-home">Home</span></a></li>
-				<li><a href="#!/logs"><span class="glyphicon glyphicon-list-alt"></span>
-						Logs</a></li>
-				<li ><a data-toggle="modal" data-target="#about"><span
+				<li><a href="#!/logs"><span
+						class="glyphicon glyphicon-list-alt"></span> Logs</a></li>
+				<li><a data-toggle="modal" data-target="#about"><span
 						class="glyphicon glyphicon-info-sign">About</span></a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li class=" active"><a ng-controller="timeController"><span
 						class="glyphicon glyphicon-time" id="time">{{clock| date:'yyyy/MM/dd HH:mm:ss'}}</span></a></li>
+				<li><a class="glyphicon glyphicon-cog dropdown-toggle"
+					data-toggle="dropdown"><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#!/" class="glyphicon glyphicon-wrench" title="Time convertor"> Tools</a></li>
+					</ul></li>
 				<li><a href="#!/"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
 

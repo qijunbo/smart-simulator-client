@@ -22,7 +22,6 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 			});
 
 
-
 			// periodically call the API to get the recent logs if any.
 			var updateClock = function() {
 
@@ -84,9 +83,20 @@ auditControllers.controller('auditController', [ '$scope',  '$routeParams', 'aud
 
 		} ]);
 
-auditControllers.controller('sysauditController', [ '$scope', 'sysauditService', 'chargePointSerialService',  '$timeout', 'auditmoreService',
-	function sysauditController($scope, sysauditService, chargePointSerialService, $timeout, auditmoreService) {
+auditControllers.controller('sysauditController', [ '$scope', 'sysauditService', 'chargePointSerialService',  '$timeout', 'sysauditRemoveService',
+	function sysauditController($scope, sysauditService, chargePointSerialService, $timeout, sysauditRemoveService) {
 		$scope.audits = [];
+
+		$scope.removeLogOlderThan = function(days){
+			alert(days);
+			sysauditRemoveService.delete({"day" : days }, {}, function success(response) {
+				console.log(response + " logs removed.");
+				$scope.audits = [];
+			}, function error(errorResponse) {
+				alert("Connot connect to server.");
+				console.log("Error:" + JSON.stringify(errorResponse));
+			});
+		};
 
 		// periodically call the API to get the recent logs if any.
 		var updateClock = function() {

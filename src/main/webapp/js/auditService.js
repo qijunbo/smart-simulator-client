@@ -24,3 +24,9 @@ auditServices.factory('sysauditService', ['$resource',
             get: {method: 'GET', cache: false, isArray: true}
         });
     }]);
+auditServices.factory('sysauditRemoveService', ['$resource', 
+    function($resource) {
+        return $resource(appContext + "/audit/day/:day", {}, {
+            delete: {method: 'DELETE', cache: false, isArray: false}
+        });
+    }]);
