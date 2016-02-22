@@ -7,7 +7,9 @@ var deviceApp = angular.module('deviceApp', [
     'deviceControllers' ,
     'auditControllers',
     'deviceServices',
-    'auditServices'
+    'auditServices',
+    'toolControllers',
+    'timeServices'
 ]);
 
 
@@ -24,6 +26,9 @@ deviceApp.config(['$routeProvider', '$locationProvider',
                 }).when('/logs/:serial', {
                     templateUrl: 'partials/audit.html',  
                     controller: 'auditController'
+                }).when('/tool', {
+                    templateUrl: 'partials/tools.html',  
+                    controller: 'timeController'
                 }).otherwise({
                     redirectTo: '/'
                 });
